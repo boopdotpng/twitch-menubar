@@ -1,0 +1,592 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7F3FA8602BFA9CE1006FBBCF /* twitch_menubarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA85F2BFA9CE1006FBBCF /* twitch_menubarApp.swift */; };
+		7F3FA8622BFA9CE1006FBBCF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA8612BFA9CE1006FBBCF /* ContentView.swift */; };
+		7F3FA8642BFA9CE1006FBBCF /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA8632BFA9CE1006FBBCF /* Item.swift */; };
+		7F3FA8662BFA9CE2006FBBCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F3FA8652BFA9CE2006FBBCF /* Assets.xcassets */; };
+		7F3FA8692BFA9CE2006FBBCF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F3FA8682BFA9CE2006FBBCF /* Preview Assets.xcassets */; };
+		7F3FA8742BFA9CE2006FBBCF /* twitch_menubarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA8732BFA9CE2006FBBCF /* twitch_menubarTests.swift */; };
+		7F3FA87E2BFA9CE2006FBBCF /* twitch_menubarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA87D2BFA9CE2006FBBCF /* twitch_menubarUITests.swift */; };
+		7F3FA8802BFA9CE2006FBBCF /* twitch_menubarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA87F2BFA9CE2006FBBCF /* twitch_menubarUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7F3FA8702BFA9CE2006FBBCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F3FA8542BFA9CE1006FBBCF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F3FA85B2BFA9CE1006FBBCF;
+			remoteInfo = "twitch-menubar";
+		};
+		7F3FA87A2BFA9CE2006FBBCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7F3FA8542BFA9CE1006FBBCF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7F3FA85B2BFA9CE1006FBBCF;
+			remoteInfo = "twitch-menubar";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7F3FA85C2BFA9CE1006FBBCF /* twitch-menubar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "twitch-menubar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F3FA85F2BFA9CE1006FBBCF /* twitch_menubarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twitch_menubarApp.swift; sourceTree = "<group>"; };
+		7F3FA8612BFA9CE1006FBBCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7F3FA8632BFA9CE1006FBBCF /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		7F3FA8652BFA9CE2006FBBCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7F3FA8682BFA9CE2006FBBCF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7F3FA86A2BFA9CE2006FBBCF /* twitch_menubar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = twitch_menubar.entitlements; sourceTree = "<group>"; };
+		7F3FA86F2BFA9CE2006FBBCF /* twitch-menubarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "twitch-menubarTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F3FA8732BFA9CE2006FBBCF /* twitch_menubarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twitch_menubarTests.swift; sourceTree = "<group>"; };
+		7F3FA8792BFA9CE2006FBBCF /* twitch-menubarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "twitch-menubarUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F3FA87D2BFA9CE2006FBBCF /* twitch_menubarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twitch_menubarUITests.swift; sourceTree = "<group>"; };
+		7F3FA87F2BFA9CE2006FBBCF /* twitch_menubarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twitch_menubarUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7F3FA8592BFA9CE1006FBBCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F3FA86C2BFA9CE2006FBBCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F3FA8762BFA9CE2006FBBCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7F3FA8532BFA9CE1006FBBCF = {
+			isa = PBXGroup;
+			children = (
+				7F3FA85E2BFA9CE1006FBBCF /* twitch-menubar */,
+				7F3FA8722BFA9CE2006FBBCF /* twitch-menubarTests */,
+				7F3FA87C2BFA9CE2006FBBCF /* twitch-menubarUITests */,
+				7F3FA85D2BFA9CE1006FBBCF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7F3FA85D2BFA9CE1006FBBCF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7F3FA85C2BFA9CE1006FBBCF /* twitch-menubar.app */,
+				7F3FA86F2BFA9CE2006FBBCF /* twitch-menubarTests.xctest */,
+				7F3FA8792BFA9CE2006FBBCF /* twitch-menubarUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7F3FA85E2BFA9CE1006FBBCF /* twitch-menubar */ = {
+			isa = PBXGroup;
+			children = (
+				7F3FA85F2BFA9CE1006FBBCF /* twitch_menubarApp.swift */,
+				7F3FA8612BFA9CE1006FBBCF /* ContentView.swift */,
+				7F3FA8632BFA9CE1006FBBCF /* Item.swift */,
+				7F3FA8652BFA9CE2006FBBCF /* Assets.xcassets */,
+				7F3FA86A2BFA9CE2006FBBCF /* twitch_menubar.entitlements */,
+				7F3FA8672BFA9CE2006FBBCF /* Preview Content */,
+			);
+			path = "twitch-menubar";
+			sourceTree = "<group>";
+		};
+		7F3FA8672BFA9CE2006FBBCF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				7F3FA8682BFA9CE2006FBBCF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7F3FA8722BFA9CE2006FBBCF /* twitch-menubarTests */ = {
+			isa = PBXGroup;
+			children = (
+				7F3FA8732BFA9CE2006FBBCF /* twitch_menubarTests.swift */,
+			);
+			path = "twitch-menubarTests";
+			sourceTree = "<group>";
+		};
+		7F3FA87C2BFA9CE2006FBBCF /* twitch-menubarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7F3FA87D2BFA9CE2006FBBCF /* twitch_menubarUITests.swift */,
+				7F3FA87F2BFA9CE2006FBBCF /* twitch_menubarUITestsLaunchTests.swift */,
+			);
+			path = "twitch-menubarUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7F3FA85B2BFA9CE1006FBBCF /* twitch-menubar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F3FA8832BFA9CE2006FBBCF /* Build configuration list for PBXNativeTarget "twitch-menubar" */;
+			buildPhases = (
+				7F3FA8582BFA9CE1006FBBCF /* Sources */,
+				7F3FA8592BFA9CE1006FBBCF /* Frameworks */,
+				7F3FA85A2BFA9CE1006FBBCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "twitch-menubar";
+			productName = "twitch-menubar";
+			productReference = 7F3FA85C2BFA9CE1006FBBCF /* twitch-menubar.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7F3FA86E2BFA9CE2006FBBCF /* twitch-menubarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F3FA8862BFA9CE2006FBBCF /* Build configuration list for PBXNativeTarget "twitch-menubarTests" */;
+			buildPhases = (
+				7F3FA86B2BFA9CE2006FBBCF /* Sources */,
+				7F3FA86C2BFA9CE2006FBBCF /* Frameworks */,
+				7F3FA86D2BFA9CE2006FBBCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F3FA8712BFA9CE2006FBBCF /* PBXTargetDependency */,
+			);
+			name = "twitch-menubarTests";
+			productName = "twitch-menubarTests";
+			productReference = 7F3FA86F2BFA9CE2006FBBCF /* twitch-menubarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7F3FA8782BFA9CE2006FBBCF /* twitch-menubarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F3FA8892BFA9CE2006FBBCF /* Build configuration list for PBXNativeTarget "twitch-menubarUITests" */;
+			buildPhases = (
+				7F3FA8752BFA9CE2006FBBCF /* Sources */,
+				7F3FA8762BFA9CE2006FBBCF /* Frameworks */,
+				7F3FA8772BFA9CE2006FBBCF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7F3FA87B2BFA9CE2006FBBCF /* PBXTargetDependency */,
+			);
+			name = "twitch-menubarUITests";
+			productName = "twitch-menubarUITests";
+			productReference = 7F3FA8792BFA9CE2006FBBCF /* twitch-menubarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7F3FA8542BFA9CE1006FBBCF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					7F3FA85B2BFA9CE1006FBBCF = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					7F3FA86E2BFA9CE2006FBBCF = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 7F3FA85B2BFA9CE1006FBBCF;
+					};
+					7F3FA8782BFA9CE2006FBBCF = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 7F3FA85B2BFA9CE1006FBBCF;
+					};
+				};
+			};
+			buildConfigurationList = 7F3FA8572BFA9CE1006FBBCF /* Build configuration list for PBXProject "twitch-menubar" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7F3FA8532BFA9CE1006FBBCF;
+			productRefGroup = 7F3FA85D2BFA9CE1006FBBCF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7F3FA85B2BFA9CE1006FBBCF /* twitch-menubar */,
+				7F3FA86E2BFA9CE2006FBBCF /* twitch-menubarTests */,
+				7F3FA8782BFA9CE2006FBBCF /* twitch-menubarUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7F3FA85A2BFA9CE1006FBBCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F3FA8692BFA9CE2006FBBCF /* Preview Assets.xcassets in Resources */,
+				7F3FA8662BFA9CE2006FBBCF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F3FA86D2BFA9CE2006FBBCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F3FA8772BFA9CE2006FBBCF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7F3FA8582BFA9CE1006FBBCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F3FA8622BFA9CE1006FBBCF /* ContentView.swift in Sources */,
+				7F3FA8642BFA9CE1006FBBCF /* Item.swift in Sources */,
+				7F3FA8602BFA9CE1006FBBCF /* twitch_menubarApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F3FA86B2BFA9CE2006FBBCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F3FA8742BFA9CE2006FBBCF /* twitch_menubarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F3FA8752BFA9CE2006FBBCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F3FA8802BFA9CE2006FBBCF /* twitch_menubarUITestsLaunchTests.swift in Sources */,
+				7F3FA87E2BFA9CE2006FBBCF /* twitch_menubarUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7F3FA8712BFA9CE2006FBBCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F3FA85B2BFA9CE1006FBBCF /* twitch-menubar */;
+			targetProxy = 7F3FA8702BFA9CE2006FBBCF /* PBXContainerItemProxy */;
+		};
+		7F3FA87B2BFA9CE2006FBBCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7F3FA85B2BFA9CE1006FBBCF /* twitch-menubar */;
+			targetProxy = 7F3FA87A2BFA9CE2006FBBCF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7F3FA8812BFA9CE2006FBBCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7F3FA8822BFA9CE2006FBBCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		7F3FA8842BFA9CE2006FBBCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "twitch-menubar/twitch_menubar.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"twitch-menubar/Preview Content\"";
+				DEVELOPMENT_TEAM = 7AMV998SSP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.boop.twitch-menubar";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		7F3FA8852BFA9CE2006FBBCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "twitch-menubar/twitch_menubar.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"twitch-menubar/Preview Content\"";
+				DEVELOPMENT_TEAM = 7AMV998SSP;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.boop.twitch-menubar";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		7F3FA8872BFA9CE2006FBBCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7AMV998SSP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.boop.twitch-menubarTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/twitch-menubar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/twitch-menubar";
+			};
+			name = Debug;
+		};
+		7F3FA8882BFA9CE2006FBBCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7AMV998SSP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.boop.twitch-menubarTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/twitch-menubar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/twitch-menubar";
+			};
+			name = Release;
+		};
+		7F3FA88A2BFA9CE2006FBBCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7AMV998SSP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.boop.twitch-menubarUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "twitch-menubar";
+			};
+			name = Debug;
+		};
+		7F3FA88B2BFA9CE2006FBBCF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7AMV998SSP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.boop.twitch-menubarUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "twitch-menubar";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7F3FA8572BFA9CE1006FBBCF /* Build configuration list for PBXProject "twitch-menubar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F3FA8812BFA9CE2006FBBCF /* Debug */,
+				7F3FA8822BFA9CE2006FBBCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F3FA8832BFA9CE2006FBBCF /* Build configuration list for PBXNativeTarget "twitch-menubar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F3FA8842BFA9CE2006FBBCF /* Debug */,
+				7F3FA8852BFA9CE2006FBBCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F3FA8862BFA9CE2006FBBCF /* Build configuration list for PBXNativeTarget "twitch-menubarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F3FA8872BFA9CE2006FBBCF /* Debug */,
+				7F3FA8882BFA9CE2006FBBCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F3FA8892BFA9CE2006FBBCF /* Build configuration list for PBXNativeTarget "twitch-menubarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F3FA88A2BFA9CE2006FBBCF /* Debug */,
+				7F3FA88B2BFA9CE2006FBBCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7F3FA8542BFA9CE1006FBBCF /* Project object */;
+}
