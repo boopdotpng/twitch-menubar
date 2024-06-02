@@ -6,3 +6,4 @@ a small, lightweight application that notifies you when your followed twitch str
 - settings ui unfinished
 - menubar ui unfinished 
 - add more customization options
+- finish middle-man server for twitch-auth (twitch only allows https:// redirects)
