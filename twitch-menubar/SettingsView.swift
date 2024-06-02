@@ -25,17 +25,20 @@ struct SettingsView: View {
     }
   
   private func handleURL(_ url: URL) {
-    guard url.scheme == "twich-menubar" else {
-      return
-    }
     guard url.pathComponents.count == 2 else {
       print("invalid url")
       return
     }
    
-    // update access token and do data fetching here
-    
-    
+    // update access token and do data fetching
+    if user.count == 0 {
+      print("no users in db")
+      modelContext.insert(User(access_token: url.pathComponents[1]))
+    } else {
+      print("we deleted a user")
+      modelContext.delete(user[0])
+      modelContext.insert(User(access_token: url.pathComponents[1]))
+    }
   }
   
 }
