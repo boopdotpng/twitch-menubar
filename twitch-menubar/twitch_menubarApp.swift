@@ -8,25 +8,32 @@
 import SwiftUI
 import SwiftData
 
+
 @main
 struct twitch_menubarApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+  
+  let auth_url = K.TwitchIdents.generate_auth_url()
+  @Environment(\.openWindow) private var openWindow
+  
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-        .modelContainer(sharedModelContainer)
+      // temporary icon
+      MenuBarExtra("where?", systemImage: "1.circle") {
+        Link("login with twitch", destination: URL(string:auth_url)!)
+          
+        Divider()
+        
+        Button("preferences") {
+          openWindow(id: "preferences")
+        }.keyboardShortcut(",")
+
+        Button("quit") {
+          NSApplication.shared.terminate(nil)
+        }.keyboardShortcut("q")
+      }
+      
+      Window("preferences", id:"preferences"){
+        SettingsView()
+      }
+      .modelContainer(for: User.self)
     }
 }

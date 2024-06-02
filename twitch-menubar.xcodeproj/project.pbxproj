@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		7F3FA8602BFA9CE1006FBBCF /* twitch_menubarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA85F2BFA9CE1006FBBCF /* twitch_menubarApp.swift */; };
-		7F3FA8622BFA9CE1006FBBCF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA8612BFA9CE1006FBBCF /* ContentView.swift */; };
-		7F3FA8642BFA9CE1006FBBCF /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA8632BFA9CE1006FBBCF /* Item.swift */; };
 		7F3FA8662BFA9CE2006FBBCF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F3FA8652BFA9CE2006FBBCF /* Assets.xcassets */; };
 		7F3FA8692BFA9CE2006FBBCF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F3FA8682BFA9CE2006FBBCF /* Preview Assets.xcassets */; };
 		7F3FA8742BFA9CE2006FBBCF /* twitch_menubarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA8732BFA9CE2006FBBCF /* twitch_menubarTests.swift */; };
 		7F3FA87E2BFA9CE2006FBBCF /* twitch_menubarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA87D2BFA9CE2006FBBCF /* twitch_menubarUITests.swift */; };
 		7F3FA8802BFA9CE2006FBBCF /* twitch_menubarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3FA87F2BFA9CE2006FBBCF /* twitch_menubarUITestsLaunchTests.swift */; };
+		7FE4C9002C0BFF1700404C97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE4C8FF2C0BFF1700404C97 /* User.swift */; };
+		7FE4C9022C0C061F00404C97 /* Constants .swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE4C9012C0C061F00404C97 /* Constants .swift */; };
+		7FE4C9082C0C1E6C00404C97 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE4C9072C0C1E6C00404C97 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +38,6 @@
 /* Begin PBXFileReference section */
 		7F3FA85C2BFA9CE1006FBBCF /* twitch-menubar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "twitch-menubar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F3FA85F2BFA9CE1006FBBCF /* twitch_menubarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twitch_menubarApp.swift; sourceTree = "<group>"; };
-		7F3FA8612BFA9CE1006FBBCF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		7F3FA8632BFA9CE1006FBBCF /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		7F3FA8652BFA9CE2006FBBCF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F3FA8682BFA9CE2006FBBCF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7F3FA86A2BFA9CE2006FBBCF /* twitch_menubar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = twitch_menubar.entitlements; sourceTree = "<group>"; };
@@ -47,6 +46,10 @@
 		7F3FA8792BFA9CE2006FBBCF /* twitch-menubarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "twitch-menubarUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F3FA87D2BFA9CE2006FBBCF /* twitch_menubarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twitch_menubarUITests.swift; sourceTree = "<group>"; };
 		7F3FA87F2BFA9CE2006FBBCF /* twitch_menubarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = twitch_menubarUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7F3FA88C2BFA9E61006FBBCF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7FE4C8FF2C0BFF1700404C97 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		7FE4C9012C0C061F00404C97 /* Constants .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants .swift"; sourceTree = "<group>"; };
+		7FE4C9072C0C1E6C00404C97 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +100,11 @@
 		7F3FA85E2BFA9CE1006FBBCF /* twitch-menubar */ = {
 			isa = PBXGroup;
 			children = (
+				7F3FA88C2BFA9E61006FBBCF /* Info.plist */,
 				7F3FA85F2BFA9CE1006FBBCF /* twitch_menubarApp.swift */,
-				7F3FA8612BFA9CE1006FBBCF /* ContentView.swift */,
-				7F3FA8632BFA9CE1006FBBCF /* Item.swift */,
+				7FE4C9072C0C1E6C00404C97 /* SettingsView.swift */,
+				7FE4C9012C0C061F00404C97 /* Constants .swift */,
+				7FE4C8FF2C0BFF1700404C97 /* User.swift */,
 				7F3FA8652BFA9CE2006FBBCF /* Assets.xcassets */,
 				7F3FA86A2BFA9CE2006FBBCF /* twitch_menubar.entitlements */,
 				7F3FA8672BFA9CE2006FBBCF /* Preview Content */,
@@ -262,9 +267,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F3FA8622BFA9CE1006FBBCF /* ContentView.swift in Sources */,
-				7F3FA8642BFA9CE1006FBBCF /* Item.swift in Sources */,
+				7FE4C9082C0C1E6C00404C97 /* SettingsView.swift in Sources */,
+				7FE4C9022C0C061F00404C97 /* Constants .swift in Sources */,
 				7F3FA8602BFA9CE1006FBBCF /* twitch_menubarApp.swift in Sources */,
+				7FE4C9002C0BFF1700404C97 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +439,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "twitch-menubar/Info.plist";
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -461,6 +469,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "twitch-menubar/Info.plist";
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
