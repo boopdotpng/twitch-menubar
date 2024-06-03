@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 public extension String {
   func urlEncode() -> String? {

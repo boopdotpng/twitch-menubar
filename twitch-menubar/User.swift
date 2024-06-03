@@ -41,7 +41,15 @@ final class User {
   }
   
   private func fetchData() -> Void {
-   print("fetching data with access token: \(access_token)")
+    let api = TwitchApi(access_token: access_token)
+    print("fetching data with access token: \(access_token)")
     is_setup = true
+    
+    Task {
+      try await api.getUser()
+    }
   }
+  
+  
 }
+
