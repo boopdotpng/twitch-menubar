@@ -46,7 +46,7 @@ final class User {
     is_setup = true
     
     Task {
-      try await api.getUser()
+      api.getAllInfo()
     }
   }
   

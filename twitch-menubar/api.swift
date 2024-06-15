@@ -7,10 +7,32 @@
 
 import Foundation
 
-typealias JSONDict = [String: String]
-
-struct UserResponse: Decodable {
-  var data: [JSONDict]
+struct UserInfo: Codable {
+  let id: String
+  let login: String
+  let displayName: String
+  let type: String
+  let broadcasterType: String
+  let description: String
+  let profileImageUrl: String
+  let offlineImageUrl: String
+  let viewCount: Int
+  let email: String
+  let createdAt: String
+  
+  enum CodingKeys: String, CodingKey {
+    case id, login, type, description, email
+    case displayName = "display_name"
+    case broadcasterType = "broadcaster_type"
+    case profileImageUrl = "profile_image_url"
+    case offlineImageUrl = "offline_image_url"
+    case viewCount = "view_count"
+    case createdAt = "created_at"
+  }
+}
+// define api structure
+struct ApiResponse: Codable {
+  let data: [UserInfo]
 }
 
 class TwitchApi {
@@ -23,41 +45,40 @@ class TwitchApi {
     self.access_token = access_token
   }
   
-  public func getUser() async throws -> JSONDict {
-    print("getUser function called")
+  func getAllInfo() {
+    getUser()
     
-    var request = URLRequest(url: TwitchApi.base_url.appendingPathComponent("users"))
+    // more functions coming
+  }
+  
+  func getUser() {
+    guard let url = URL(string: "users", relativeTo: TwitchApi.base_url) else {return}
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
     request.setValue("Bearer \(access_token)", forHTTPHeaderField: "Authorization")
     request.setValue(TwitchApi.client_id, forHTTPHeaderField: "Client-Id")
     
-    do {
-      let (data, response) = try await TwitchApi.session.data(for: request)
-      print("data received: \(data)")
-      
-      guard let httpResponse = response as? HTTPURLResponse else {
-        print("response is not HTTPURLResponse")
-        throw URLError(.badServerResponse)
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+      guard let data = data, error == nil else {
+        print("error: \(error?.localizedDescription ?? "unknown error")")
+        return
       }
       
-      print("httpResponse status code: \(httpResponse.statusCode)")
-      
-      if httpResponse.statusCode != 200 {
-        print("bad server response, status code: \(httpResponse.statusCode)")
-        throw URLError(.badServerResponse)
+      // print the raw json response
+      if let jsonString = String(data: data, encoding: .utf8) {
+        print("Raw JSON response: \(jsonString)")
       }
       
-      let userResponse = try JSONDecoder().decode(UserResponse.self, from: data)
-      print("decoded user response: \(userResponse)")
-      
-      guard let userData = userResponse.data.first else {
-        print("no user data found")
-        throw URLError(.cannotDecodeContentData)
+      do {
+        let apiResponse = try JSONDecoder().decode(ApiResponse.self, from: data)
+        for user in apiResponse.data {
+          print("User: \(user.displayName)")
+        }
+      } catch {
+        print("error decoding response: \(error.localizedDescription)")
       }
-      
-      return userData
-    } catch {
-      print("error: \(error)")
-      throw error
     }
+    task.resume()
   }
+  
 }

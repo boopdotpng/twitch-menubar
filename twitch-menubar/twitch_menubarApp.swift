@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftData
 
-
 @main
 struct twitch_menubarApp: App {
   
@@ -16,7 +15,6 @@ struct twitch_menubarApp: App {
   @Environment(\.openWindow) private var openWindow
   
     var body: some Scene {
-      // temporary icon
       MenuBarExtra("where?", systemImage: "1.circle") {
         Link("login with twitch", destination: URL(string:auth_url)!)
           
