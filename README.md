@@ -7,4 +7,5 @@
 - cool onboarding process (this might be tough)
 
 ## disclaimer 
-I know nothing about macOS application and I don't know much Swift. It's a weird language to be honest. The documentation isn't great. Beyond using LLMs to figure out how to do stuff, there isn't much hope. I don't know how to make pretty UIs in Swift. Probably a skill issue.
+I know nothing about macOS application development and I don't know much Swift. It's a weird language to be honest. The documentation isn't great. Beyond using LLMs to figure out how to do stuff, there isn't much hope. I don't know how to make pretty UIs in Swift. Probably a skill issue.
+There might be weird practices in here, sorry. But it works!
