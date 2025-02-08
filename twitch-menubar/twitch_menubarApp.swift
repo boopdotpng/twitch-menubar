@@ -24,8 +24,11 @@ struct TwitchMenubarApp: App {
 
     init() {
         NSApplication.shared.setActivationPolicy(.accessory)
+        
+        if let storeURL = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first {
+            print("SwiftData Store Location:", storeURL.path)
+        }
 
-        // Use a local variable to avoid capturing `self` before initialization
         let localContainer: ModelContainer
         do {
             localContainer = try ModelContainer(for: UserSettings.self, FollowedChannel.self)
@@ -35,13 +38,13 @@ struct TwitchMenubarApp: App {
         self.container = localContainer
         _menuBarManager = StateObject(wrappedValue: MenuBarManager(context: ModelContext(localContainer)))
 
-        let hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
-        if !hasSeenOnboarding {
+//        let hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
+//        if !hasSeenOnboarding {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 OnboardingWindow.show()
                 UserDefaults.standard.set(true, forKey: "hasSeenOnboarding")
             }
-        }
+//        }
     }
     var body: some Scene {
         Settings {

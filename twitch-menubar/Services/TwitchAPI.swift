@@ -16,7 +16,74 @@ class TwitchAPI {
 }
 
 extension TwitchAPI {
-    func fetchUserProfile(completion: @escaping (Result<UserSettings, Error>) -> Void) {
+    func fetchFollowedLiveChannels(context: ModelContext, completion: @escaping (Result<[FollowedChannel], Error>) -> Void) {
+        guard let userID = getStoredUserID(context: context) else {
+            completion(.failure(NSError(domain: "No stored userId", code: 401)))
+            return
+        }
+
+        var urlComponents = URLComponents(string: "\(baseURL)/streams/followed")!
+        urlComponents.queryItems = [
+            URLQueryItem(name: "user_id", value: userID),
+            URLQueryItem(name: "first", value: "100")
+        ]
+
+        guard let url = urlComponents.url else {
+            completion(.failure(NSError(domain: "bad url", code: 0)))
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue(clientID, forHTTPHeaderField: "Client-ID")
+
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                completion(.failure(NSError(domain: "No data", code: 0)))
+                return
+            }
+
+            // debug log
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("raw api response: \(responseString)")
+            }
+
+            do {
+                let response = try JSONDecoder().decode(FollowedStreamsResponse.self, from: data)
+                let channels = response.data.map { stream in
+                    FollowedChannel(
+                        name: stream.userName,
+                        liveSince: self.iso8601Date(from: stream.startedAt),
+                        link: "https://twitch.tv/\(stream.userLogin)",
+                        title: stream.title,
+                        gameName: stream.gameName,
+                        viewerCount: stream.viewerCount
+                    )
+                }
+                completion(.success(channels))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
+
+    func getStoredUserID(context: ModelContext) -> String? {
+        let fetchDescriptor = FetchDescriptor<UserSettings>()
+        return (try? context.fetch(fetchDescriptor).first?.userId)
+    }
+
+    private func iso8601Date(from string: String) -> Date {
+        let formatter = ISO8601DateFormatter()
+        return formatter.date(from: string) ?? Date()
+    }
+}
+extension TwitchAPI {
+    func fetchUserID(context: ModelContext, completion: @escaping (Result<String, Error>) -> Void) {
         guard !accessToken.isEmpty else {
             completion(.failure(NSError(domain: "No access token", code: 401)))
             return
@@ -40,14 +107,11 @@ extension TwitchAPI {
 
             do {
                 let response = try JSONDecoder().decode(UserProfileResponse.self, from: data)
-                if let user = response.data.first {
-                    // create and pass back `UserSettings` with userID
-                    let userSettings = UserSettings(
-                        displayName: user.displayName,
-                        profileImageUrl: user.profileImageURL,
-                        userId: user.id
-                    )
-                    completion(.success(userSettings))
+                if let userId = response.data.first?.id {
+                    let settings = UserSettings(userId: userId)
+                    context.insert(settings)
+                    try? context.save()
+                    completion(.success(userId))
                 } else {
                     completion(.failure(NSError(domain: "No user found", code: 404)))
                 }
@@ -57,108 +121,22 @@ extension TwitchAPI {
         }.resume()
     }
 }
-extension TwitchAPI {
-    func fetchFollowedChannels(userID: String, completion: @escaping (Result<[FollowedChannel], Error>) -> Void) {
-        var urlComponents = URLComponents(string: "\(baseURL)/channels/followed")!
-        urlComponents.queryItems = [
-            URLQueryItem(name: "user_id", value: userID),
-            URLQueryItem(name: "first", value: "100") // fetch max items per page
-        ]
-
-        guard let url = urlComponents.url else { return }
-
-        var request = URLRequest(url: url)
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        request.setValue(clientID, forHTTPHeaderField: "Client-ID")
-
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-
-            guard let data = data else {
-                completion(.failure(NSError(domain: "No data", code: 0)))
-                return
-            }
-
-            // log raw response for debugging
-            if let responseString = String(data: data, encoding: .utf8) {
-                print("Raw API Response: \(responseString)")
-            }
-
-            do {
-                let response = try JSONDecoder().decode(FollowedChannelsResponse.self, from: data)
-                let channels = response.data.map {
-                    FollowedChannel(
-                        name: $0.broadcasterName,
-                        isLive: false,
-                        notifyForChannel: false,
-                        liveSince: .now
-                    )
-                }
-                completion(.success(channels))
-            } catch {
-                completion(.failure(error))
-            }
-        }.resume()
-    }
-}
-
-extension TwitchAPI {
-    func checkIfLive(usernames: [String], completion: @escaping (Result<[String: Bool], Error>) -> Void) {
-        let joinedNames = usernames.joined(separator: "&user_login=")
-        let url = URL(string: "\(baseURL)/streams?user_login=\(joinedNames)")!
-        var request = URLRequest(url: url)
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        request.setValue(clientID, forHTTPHeaderField: "Client-ID")
-
-        URLSession.shared.dataTask(with: request) { data, _, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-
-            guard let data = data else {
-                completion(.failure(NSError(domain: "No data", code: 0)))
-                return
-            }
-
-            do {
-                let response = try JSONDecoder().decode(StreamStatusResponse.self, from: data)
-                let liveStatuses = usernames.reduce(into: [String: Bool]()) { result, name in
-                    result[name] = response.data.contains { $0.userLogin == name }
-                }
-                completion(.success(liveStatuses))
-            } catch {
-                completion(.failure(error))
-            }
-        }.resume()
-    }
-}
 
 extension TwitchAPI {
     func newUserInit(context: ModelContext, completion: @escaping (Result<Void, Error>) -> Void) {
-        // reset existing user data
-        clearStoredUserData(context: context)
+        clearStoredData(context: context)
 
-        fetchUserProfile { result in
+        fetchUserID(context: context) { result in
             switch result {
-            case .success(let userSettings):
-                context.insert(userSettings)
-
-                // fetch followed channels using the fetched userID
-                self.fetchFollowedChannels(userID: userSettings.userId) { result in
+            case .success(let userId):
+                print("Fetched user ID:", userId)
+                
+                // step 3: fetch followed live channels
+                self.fetchFollowedLiveChannels(context: context) { result in
                     switch result {
                     case .success(let channels):
                         for channel in channels {
-                            let followedChannel = FollowedChannel(
-                                name: channel.name,
-                                isLive: false,
-                                notifyForChannel: true,
-                                liveSince: .now
-                            )
-                            context.insert(followedChannel)
+                            context.insert(channel)
                         }
 
                         do {
@@ -167,24 +145,23 @@ extension TwitchAPI {
                         } catch {
                             completion(.failure(error))
                         }
-
+                        
                     case .failure(let error):
                         completion(.failure(error))
                     }
                 }
-
+                
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
-}
-extension TwitchAPI {
-    func clearStoredUserData(context: ModelContext) {
+
+    func clearStoredData(context: ModelContext) {
         do {
             let fetchDescriptor1 = FetchDescriptor<UserSettings>()
             let fetchDescriptor2 = FetchDescriptor<FollowedChannel>()
-            
+
             let existingUserSettings = try context.fetch(fetchDescriptor1)
             let existingFollowedChannels = try context.fetch(fetchDescriptor2)
 
@@ -196,57 +173,51 @@ extension TwitchAPI {
             }
             
             try context.save()
+            print("Cleared all stored data")
         } catch {
-            print("failed to clear stored data:", error)
+            print("Failed to clear stored data:", error)
         }
+    }
+}
+struct FollowedStreamsResponse: Codable {
+    let data: [Stream]
+    let pagination: Pagination?
+    
+    struct Stream: Codable {
+        let id: String
+        let userID: String
+        let userLogin: String
+        let userName: String
+        let gameName: String
+        let title: String
+        let viewerCount: Int
+        let startedAt: String
+        
+        enum CodingKeys: String, CodingKey {
+            case id
+            case userID = "user_id"
+            case userLogin = "user_login"
+            case userName = "user_name"
+            case gameName = "game_name"
+            case title
+            case viewerCount = "viewer_count"
+            case startedAt = "started_at"
+        }
+    }
+    
+    struct Pagination: Codable {
+        let cursor: String?
     }
 }
 
 struct UserProfileResponse: Codable {
     let data: [UserProfile]
-
+    
     struct UserProfile: Codable {
-        let displayName: String
-        let profileImageURL: String
         let id: String
-
+        
         enum CodingKeys: String, CodingKey {
             case id
-            case displayName = "display_name"
-            case profileImageURL = "profile_image_url"
         }
     }
 }
-
-struct FollowedChannelsResponse: Codable {
-    let data: [FollowedChannelResponse]
-    let pagination: Pagination?
-
-    struct FollowedChannelResponse: Codable {
-        let broadcasterID: String
-        let broadcasterLogin: String
-        let broadcasterName: String
-
-        enum CodingKeys: String, CodingKey {
-            case broadcasterID = "broadcaster_id"
-            case broadcasterLogin = "broadcaster_login"
-            case broadcasterName = "broadcaster_name"
-        }
-    }
-
-    struct Pagination: Codable {
-        let cursor: String?
-    }
-}
-struct StreamStatusResponse: Codable {
-    let data: [Stream]
-
-    struct Stream: Codable {
-        let userLogin: String
-
-        enum CodingKeys: String, CodingKey {
-            case userLogin = "user_login"
-        }
-    }
-}
-

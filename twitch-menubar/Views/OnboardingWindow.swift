@@ -27,51 +27,20 @@ struct OnboardingView: View {
                         
                         DispatchQueue.main.async {
                             isLoggedIn = true
-                            loadUserDisplayName() // retrieve display name from UserSettings
                         }
-                        TwitchAPI().newUserInit(context: context) { result in
-                            switch result {
-                            case .success:
-                                print("success")
-                                DispatchQueue.main.async {
-                                    loadUserDisplayName()
-                                }
-                            case .failure(let error):
-                                print("error during init: \(error)")
-                            }
+                        TwitchAPI().newUserInit(context: context) {result in
+                            
                         }
                     }
                     oauthServer.start()
                     NSWorkspace.shared.open(TwitchAuth.generateOAuthURL())
                 }
             } else {
-                if let name = displayName {
-                    Text("welcome, \(name)!")
-                        .font(.headline)
-                        .foregroundColor(.blue)
-                } else {
-                    Text("retrieving user info...")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
-                
-                Button("configure the app") {
-                    NSApplication.shared.terminate(nil)
-                }
+                Text("logged in! check your menu bar.")
             }
         }
         .padding()
         .frame(width: 350, height: 250)
-    }
-
-    private func loadUserDisplayName() {
-        do {
-            let fetchDescriptor = FetchDescriptor<UserSettings>()
-            let userSettings = try context.fetch(fetchDescriptor).first
-            self.displayName = userSettings?.displayName
-        } catch {
-            print("failed to fetch UserSettings:", error)
-        }
     }
 }
 struct OnboardingWindow {
