@@ -8,9 +8,9 @@
 import Foundation
 
 struct TwitchAuth {
-    static let clientID = "y"
-    static let RedirectURI = "https://localhost:8080/callback"
-    static let scopes = ""
+    static let clientID = "7qw2aa2bt6tnbmme4njhb9y5woucfk"
+    static let RedirectURI = "http://localhost:8080/callback"
+    static let scopes = "user:read:follows user:read:email openid"
     
     static func generateOAuthURL() -> URL {
         let authURL = "https://id.twitch.tv/oauth2/authorize?client_id=\(clientID)&redirect_uri=\(RedirectURI)&response_type=token&scope=\(scopes)"

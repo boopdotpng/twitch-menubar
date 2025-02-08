@@ -18,10 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 @main
 struct TwitchMenubarApp: App {
     private let hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
-    let authServer = OAuthServer()
     
     var body: some Scene {
-        
         // TODO: stop this from launching on app launch
         Settings {
             SettingsView()
@@ -41,18 +39,16 @@ struct TwitchMenubarApp: App {
                 NSApplication.shared.terminate(nil)
             }
             .keyboardShortcut("q", modifiers: [.command])
-
         }
         
     }
     
     init() {
-        authServer.start()
         NSApplication.shared.setActivationPolicy(.accessory)
-        if !hasSeenOnboarding {
+//        if !hasSeenOnboarding {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 OnboardingWindow.show()
-            }
+//            }
         }
     }
 }

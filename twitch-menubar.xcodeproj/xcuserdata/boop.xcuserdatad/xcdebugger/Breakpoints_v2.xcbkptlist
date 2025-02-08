@@ -14,8 +14,8 @@
             filePath = "twitch-menubar/Services/TwitchAPI.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "CodingKeys"
             landmarkType = "13">
          </BreakpointContent>

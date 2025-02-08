@@ -5,10 +5,11 @@
 //  Created by Anuraag Warudkar on 2/7/25.
 //
 import Foundation
+import SwiftData
 
 class TwitchAPI {
     private let baseURL = "https://api.twitch.tv/helix"
-    private let clientID = "your_client_id"
+    private let clientID = "7qw2aa2bt6tnbmme4njhb9y5woucfk"
     private var accessToken: String {
         UserDefaults.standard.string(forKey: "twitch_access_token") ?? ""
     }
@@ -111,6 +112,42 @@ extension TwitchAPI {
                 completion(.failure(error))
             }
         }.resume()
+    }
+}
+
+extension TwitchAPI {
+    func newUserInit(context: ModelContext, completion: @escaping (Result<Void, Error>) -> Void) {
+        fetchUserProfile { result in
+            switch result {
+            case .success(let (displayName, profileImageUrl)):
+                let userSettings = UserSettings(displayName: displayName, profileImageUrl: profileImageUrl)
+                context.insert(userSettings)
+
+                // fetch followed channels
+                self.fetchFollowedChannels(userID: displayName) { result in
+                    switch result {
+                    case .success(let channels):
+                        for channel in channels {
+                            let followedChannel = FollowedChannel(name: channel.name, isLive: false, notifyForChannel: true, liveSince: .now)
+                            context.insert(followedChannel)
+                        }
+
+                        do {
+                            try context.save()
+                            completion(.success(()))
+                        } catch {
+                            completion(.failure(error))
+                        }
+
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
+
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }
 
