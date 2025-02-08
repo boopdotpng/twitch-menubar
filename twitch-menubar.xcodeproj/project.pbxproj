@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7F2772902D56FA8300638AD2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7F27728E2D56FA7C00638AD2 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		7F2772722D56F8FC00638AD2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		7F27725E2D56F8FB00638AD2 /* twitch-menubar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "twitch-menubar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F2772712D56F8FC00638AD2 /* twitch-menubarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "twitch-menubarTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F27727B2D56F8FC00638AD2 /* twitch-menubarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "twitch-menubarUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F27728E2D56FA7C00638AD2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -79,6 +84,7 @@
 				7F2772742D56F8FC00638AD2 /* twitch-menubarTests */,
 				7F27727E2D56F8FC00638AD2 /* twitch-menubarUITests */,
 				7F27725F2D56F8FB00638AD2 /* Products */,
+				7F27728E2D56FA7C00638AD2 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F2772902D56FA8300638AD2 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
