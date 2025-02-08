@@ -83,6 +83,11 @@ struct LiveChannelsView: View {
             case .success(let fetchedChannels):
                 DispatchQueue.main.async {
                     channels = fetchedChannels
+                    for channel in channels {
+                        if Date().timeIntervalSince(channel.liveSince) < 180 {
+                            NotificationManager.shared.sendNotification(for: channel)
+                        }
+                    }
                 }
             case .failure(let error):
                 print("failed to fetch channels:", error)
