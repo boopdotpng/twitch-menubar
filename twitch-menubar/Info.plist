@@ -15,5 +15,9 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSAllowsArbritaryLoads</key>
+	<true/>
+	<key>NSUserNotificationUsageDescription</key>
+	<string>This app sends notifications when followed Twitch streamers go live.</string>
 </dict>
 </plist>

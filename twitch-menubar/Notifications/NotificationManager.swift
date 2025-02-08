@@ -1,10 +1,3 @@
-//
-//  NotificationManager.swift
-//  twitch-menubar
-//
-//  Created by Anuraag Warudkar on 2/8/25.
-//
-
 import UserNotifications
 
 class NotificationManager {
@@ -12,10 +5,15 @@ class NotificationManager {
     private var notifiedChannels: [String: Date] = [:]
 
     private init() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
+        requestAuthorization()
+    }
+
+    func requestAuthorization() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             if let error = error {
-                print("notif auth error:", error)
+                print("Notification authorization error:", error)
             }
+            print("Notification permission granted: \(granted)")
         }
     }
 
@@ -34,16 +32,16 @@ class NotificationManager {
         let request = UNNotificationRequest(identifier: channel.name, content: content, trigger: nil)
         UNUserNotificationCenter.current().add(request) { error in
             if let error = error {
-                print("failed to send notif:", error)
+                print("Failed to send notification:", error)
             }
         }
     }
 
     private func durationString(from date: Date) -> String {
         let interval = Int(Date().timeIntervalSince(date))
-        let days = interval / 86400
-        let hours = (interval % 86400) / 3600
         let minutes = (interval % 3600) / 60
+        let hours = (interval % 86400) / 3600
+        let days = interval / 86400
 
         var parts: [String] = []
         if days > 0 { parts.append("\(days)d") }
