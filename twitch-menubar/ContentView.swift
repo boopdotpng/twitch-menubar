@@ -1,55 +1,59 @@
-//
-//  ContentView.swift
-//  twitch-menubar
-//
-//  Created by Anuraag Warudkar on 2/7/25.
-//
-
+import Foundation
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    let channels: [TwitchChannel] = [
+        .init(name: "xQc", url: "https://twitch.tv", liveDuration: "2h 15m", isLive: true, profileImage: nil),
+        .init(name: "Shroud", url: "https://twitch.tv", liveDuration: "45m", isLive: true, profileImage: nil),
+        .init(name: "Ninja", url: "https://twitch.tv", liveDuration: "Offline", isLive: false, profileImage: nil)
+    ]
+    
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
+            VStack(spacing: 10) {
+                Text("Followed Twitch Channels")
+                    .font(.headline)
 
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
+                Divider()
 
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+                ScrollView {
+                    VStack(spacing: 5) {
+                        ForEach(channels, id: \.name) { channel in
+                            Button(action: { openTwitch(channel.url) }) {
+                                HStack {
+                                    Image(systemName: "play.fill")
+                                        .foregroundColor(.purple)
+                                    Text(channel.name)
+                                        .fontWeight(.medium)
+                                    Spacer()
+                                }
+                                .padding(.horizontal)
+                            }
+                            .buttonStyle(.plain) // removes macOS button styling
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .contentShape(Rectangle()) // makes entire row clickable
+                        }
+                    }
+                    .padding(.vertical, 5)
+                }
+                .frame(height: 150)
+
             }
+            .padding()
+            .frame(width: 300)
+        }
+    
+    func openTwitch(_ url: String) {
+        if let twitchURL = URL(string: url) {
+            NSWorkspace.shared.open(twitchURL)
         }
     }
 }
 
+struct TwitchChannel: Identifiable {
+    let name: String
+    let url: String
+    let id = UUID()
+    let liveDuration: String
+    let isLive: Bool
+    let profileImage: String?
+}

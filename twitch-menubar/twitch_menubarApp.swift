@@ -9,24 +9,41 @@ import SwiftUI
 import SwiftData
 
 @main
-struct twitch_menubarApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+struct TwitchMenubarApp: App {
+    private let hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
+    
+    
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        
+        // TODO: stop this from launching on app launch
+        Settings {
+            SettingsView()
         }
-        .modelContainer(sharedModelContainer)
+        
+        MenuBarExtra("Twitch", systemImage: "play.circle") {
+            ContentView()
+            
+            Divider()
+            
+            SettingsLink {
+                Text("Settings")
+            }
+            .keyboardShortcut(",", modifiers: [.command]);
+            
+            Button("Quit") {
+                NSApplication.shared.terminate(nil)
+            }
+            
+        }
+        
+    }
+    
+    init() {
+        NSApplication.shared.setActivationPolicy(.accessory)
+        if !hasSeenOnboarding {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                OnboardingWindow.show()
+            }
+        }
     }
 }
