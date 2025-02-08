@@ -12,10 +12,10 @@ I know nothing about macOS application development, and my Swift knowledge is li
 There might be weird practices in this code. Sorry. But it works!
 
 ## Roadmap
-Unfortunately, Apple requires a $100 developer subscription to enable useful features (like sending notifications). Because of this, the app might not evolve much further. This was primarily a project to see how quickly I could ship a semi-decent working app.
+Unfortunately, Apple requires a $100 developer subscription to enable useful features (like sending notifications). Because of this, the app might not evolve much further. This was primarily a project to see how quickly I could ship a semi-decent working app. Honestly, it does almost everything I need it to right now.
 
 ## Screenshots & Functionality
-Since no one else can run the app, here are screenshots demonstrating its functionality:
+Since it's difficult to run the app, here are some screenshots.
 
 ### 1. User signs in using their Twitch account
 <img src="images/oauth.png?raw=true" alt="OAuth" width="100%">
@@ -32,4 +32,3 @@ Since no one else can run the app, here are screenshots demonstrating its functi
 - Sends notifications when a followed streamer goes live (disabled due to lack of a developer account).
 - Automatically updates every two minutes to keep the live channel list fresh.
 
-This was a fun experiment, and despite Swift's quirks, the app works surprisingly well. If I ever decide to get an Apple Developer account, maybe I'll polish it further!
