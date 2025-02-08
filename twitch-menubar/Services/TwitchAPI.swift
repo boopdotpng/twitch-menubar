@@ -48,11 +48,6 @@ extension TwitchAPI {
                 return
             }
 
-            // debug log
-            if let responseString = String(data: data, encoding: .utf8) {
-                print("raw api response: \(responseString)")
-            }
-
             do {
                 let response = try JSONDecoder().decode(FollowedStreamsResponse.self, from: data)
                 let channels = response.data.map { stream in

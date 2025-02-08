@@ -3,42 +3,61 @@ import SwiftData
 
 class MenuBarManager: ObservableObject {
     private var statusItem: NSStatusItem
-    private var popover: NSPopover
     private let context: ModelContext
-    private var channels: [FollowedChannel] = [] // store channels
+    private var popover: NSPopover
 
     init(context: ModelContext) {
         self.context = context
-
-        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        popover = NSPopover()
-        popover.behavior = .transient // closes when clicking outside
-
-        loadChannels() // fetch channels
+        self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        self.popover = NSPopover()
+        self.popover.contentViewController = NSHostingController(rootView: LiveChannelsView(context: context))
+        self.popover.behavior = .transient 
+        self.popover.animates = true
 
         if let button = statusItem.button {
             button.image = NSImage(systemSymbolName: "play.circle", accessibilityDescription: "Twitch")
             button.action = #selector(togglePopover(_:))
             button.target = self
         }
-    }
 
-    private func loadChannels() {
-        do {
-            let fetchDescriptor = FetchDescriptor<FollowedChannel>()
-            self.channels = try context.fetch(fetchDescriptor)
-        } catch {
-            print("failed to load channels:", error)
-        }
+        fetchIfNeeded()
     }
 
     @objc private func togglePopover(_ sender: AnyObject?) {
         if popover.isShown {
             popover.performClose(sender)
         } else if let button = statusItem.button {
-            loadChannels() // refresh channels before showing popover
-            popover.contentViewController = NSHostingController(rootView: ContentView(channels: channels))
-            popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minX)
+            showPopover(relativeTo: button)
+        }
+    }
+
+    private func showPopover(relativeTo button: NSStatusBarButton) {
+        guard let buttonWindow = button.window else { return }
+
+        popover.show(
+            relativeTo: button.bounds,
+            of: button,
+            preferredEdge: .minY
+        )
+    }
+
+    private func fetchIfNeeded() {
+        let lastFetchTime = UserDefaults.standard.double(forKey: "lastFetchTime")
+        let currentTime = Date().timeIntervalSince1970
+
+        if currentTime - lastFetchTime < 120 {
+            print("Skipping fetch, last updated less than 2 minutes ago")
+            return
+        }
+
+        print("Fetching initial channel data...")
+        TwitchAPI().fetchFollowedLiveChannels(context: context) { result in
+            switch result {
+            case .success:
+                UserDefaults.standard.set(currentTime, forKey: "lastFetchTime")
+            case .failure(let error):
+                print("Failed to fetch channels:", error)
+            }
         }
     }
 }
