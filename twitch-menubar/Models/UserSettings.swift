@@ -13,12 +13,14 @@ class UserSettings {
     var notificationsEnabled: Bool // global toggle
     var displayName: String
     var profileImageUrl: String
+    var userId: String = ""
     
     
-    init(id: UUID = UUID(), notificationsEnabled: Bool = true, displayName: String, profileImageUrl: String) {
+    init(id: UUID = UUID(), notificationsEnabled: Bool = true, displayName: String, profileImageUrl: String, userId: String) {
         self.id = id
         self.notificationsEnabled = notificationsEnabled
         self.displayName = displayName
         self.profileImageUrl = profileImageUrl
+        self.userId = userId
     }
 }

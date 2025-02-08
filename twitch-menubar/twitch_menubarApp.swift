@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Foundation
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     func application(_ app: NSApplication, open urls: [URL]) {
@@ -17,38 +18,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 @main
 struct TwitchMenubarApp: App {
-    private let hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
-    
-    var body: some Scene {
-        // TODO: stop this from launching on app launch
-        Settings {
-            SettingsView()
-        }
-        
-        MenuBarExtra("twitch", systemImage: "play.circle") {
-            ContentView()
-            
-            Divider()
-            
-            SettingsLink {
-                Text("settings")
-            }
-            .keyboardShortcut(",", modifiers: [.command]);
-            
-            Button("quit") {
-                NSApplication.shared.terminate(nil)
-            }
-            .keyboardShortcut("q", modifiers: [.command])
-        }
-        
-    }
-    
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    let container: ModelContainer
+    @StateObject private var menuBarManager: MenuBarManager
+
     init() {
         NSApplication.shared.setActivationPolicy(.accessory)
-//        if !hasSeenOnboarding {
+
+        // Use a local variable to avoid capturing `self` before initialization
+        let localContainer: ModelContainer
+        do {
+            localContainer = try ModelContainer(for: UserSettings.self, FollowedChannel.self)
+        } catch {
+            fatalError("Failed to initialize ModelContainer: \(error)")
+        }
+        self.container = localContainer
+        _menuBarManager = StateObject(wrappedValue: MenuBarManager(context: ModelContext(localContainer)))
+
+        let hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
+        if !hasSeenOnboarding {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 OnboardingWindow.show()
-//            }
+                UserDefaults.standard.set(true, forKey: "hasSeenOnboarding")
+            }
+        }
+    }
+    var body: some Scene {
+        Settings {
+            SettingsView()
         }
     }
 }

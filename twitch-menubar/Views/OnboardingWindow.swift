@@ -27,7 +27,18 @@ struct OnboardingView: View {
                         
                         DispatchQueue.main.async {
                             isLoggedIn = true
-                            fetchUserDisplayName() // fetch and store display name
+                            loadUserDisplayName() // retrieve display name from UserSettings
+                        }
+                        TwitchAPI().newUserInit(context: context) { result in
+                            switch result {
+                            case .success:
+                                print("success")
+                                DispatchQueue.main.async {
+                                    loadUserDisplayName()
+                                }
+                            case .failure(let error):
+                                print("error during init: \(error)")
+                            }
                         }
                     }
                     oauthServer.start()
@@ -44,7 +55,6 @@ struct OnboardingView: View {
                         .foregroundColor(.gray)
                 }
                 
-                // TODO: make this actually open settings
                 Button("configure the app") {
                     NSApplication.shared.terminate(nil)
                 }
@@ -54,31 +64,16 @@ struct OnboardingView: View {
         .frame(width: 350, height: 250)
     }
 
-    private func fetchUserDisplayName() {
-        let api = TwitchAPI()
-
-        api.fetchUserProfile { result in
-            switch result {
-            case .success(let (name, profileImageUrl)):
-                DispatchQueue.main.async {
-                    self.displayName = name
-
-                    // store user data in SwiftData
-                    let userSettings = UserSettings(displayName: name, profileImageUrl: profileImageUrl)
-                    context.insert(userSettings)
-                    do {
-                        try context.save()
-                    } catch {
-                        print("failed to save user data:", error)
-                    }
-                }
-            case .failure(let error):
-                print("failed to fetch user profile:", error)
-            }
+    private func loadUserDisplayName() {
+        do {
+            let fetchDescriptor = FetchDescriptor<UserSettings>()
+            let userSettings = try context.fetch(fetchDescriptor).first
+            self.displayName = userSettings?.displayName
+        } catch {
+            print("failed to fetch UserSettings:", error)
         }
     }
 }
-
 struct OnboardingWindow {
     static func show() {
         let container = try! ModelContainer(for: UserSettings.self, FollowedChannel.self)
