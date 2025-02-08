@@ -8,10 +8,17 @@
 import SwiftUI
 import SwiftData
 
+class AppDelegate: NSObject, NSApplicationDelegate {
+    func application(_ app: NSApplication, open urls: [URL]) {
+        guard let url = urls.first else { return }
+        TwitchAuth.handleOAuthCallback(url: url)
+    }
+}
+
 @main
 struct TwitchMenubarApp: App {
     private let hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
-    
+    let authServer = OAuthServer()
     
     var body: some Scene {
         
@@ -40,6 +47,7 @@ struct TwitchMenubarApp: App {
     }
     
     init() {
+        authServer.start()
         NSApplication.shared.setActivationPolicy(.accessory)
         if !hasSeenOnboarding {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

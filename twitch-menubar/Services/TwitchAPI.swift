@@ -13,7 +13,7 @@ class TwitchAPI {
         UserDefaults.standard.string(forKey: "twitch_access_token") ?? ""
     }
 }
-// fetch user profile
+
 extension TwitchAPI {
     func fetchUserProfile(completion: @escaping (Result<(String, String), Error>) -> Void) {
         guard !accessToken.isEmpty else {
@@ -149,17 +149,6 @@ struct StreamStatusResponse: Codable {
         enum CodingKeys: String, CodingKey {
             case userLogin = "user_login"
         }
-    }
-}
-
-struct TwitchAuth {
-    static let clientID = "y"
-    static let RedirectURI = "https://localhost:8080"
-    static let scopes = ""
-    
-    static func generateOAuthURL() -> URL {
-        let authURL = "https://id.twitch.tv/oauth2/authorize?client_id=\(clientID)&redirect_uri=\(RedirectURI)&response_type=token&scope=\(scopes)"
-        return URL(string: authURL)!
     }
 }
 
