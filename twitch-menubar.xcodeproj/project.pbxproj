@@ -65,6 +65,11 @@
 			path = "twitch-menubarUITests";
 			sourceTree = "<group>";
 		};
+		7FF33B572D581C410088F265 /* images */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = images;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +106,7 @@
 				7F27725F2D56F8FB00638AD2 /* Products */,
 				7F27728E2D56FA7C00638AD2 /* README.md */,
 				7F872CF42D580C7F00089A48 /* LICENSE */,
+				7FF33B572D581C410088F265 /* images */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +137,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				7F2772602D56F8FB00638AD2 /* twitch-menubar */,
+				7FF33B572D581C410088F265 /* images */,
 			);
 			name = "twitch-menubar";
 			packageProductDependencies = (
