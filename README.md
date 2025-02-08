@@ -7,7 +7,7 @@
 - Smooth onboarding process (this might be a challenge).
 
 ## Disclaimer
-I know nothing about macOS application development, and my Swift knowledge is limited. It's a strange language, and the documentation isn't great. Beyond using LLMs to figure things out, there's not much hope. I also have no clue how to make pretty UIs in Swift—probably a skill issue.
+I know nothing about macOS application development, and my Swift knowledge is limited. It's a strange language, and the documentation isn't great. Beyond using LLMs to figure things out, there's not much hope. I also have no clue how to make pretty UIs in Swift—probably a skill issue. 
 
 There might be weird practices in this code. Sorry. But it works!
 
@@ -18,13 +18,13 @@ Unfortunately, Apple requires a $100 developer subscription to enable useful fea
 Since no one else can run the app, here are screenshots demonstrating its functionality:
 
 ### 1. User signs in using their Twitch account
-![OAuth](images/oauth.png?raw=true)
+<img src="images/oauth.png?raw=true" alt="OAuth" width="100%">
 
 ### 2. User opens the menu bar application
-![Menu](images/menu.png?raw=true)
+<img src="https://github.com/boopdotpng/twitch-menubar/blob/master/images/menu.png" alt="Menu" width="400">
 
 ### 3. User searches for a channel
-![Search](images/search.png?raw=true)
+<img src="https://github.com/boopdotpng/twitch-menubar/blob/master/images/search.png" alt="Search" width="400">
 
 ### 4. User can press enter to open the first search result in their browser
 
@@ -33,4 +33,3 @@ Since no one else can run the app, here are screenshots demonstrating its functi
 - Automatically updates every two minutes to keep the live channel list fresh.
 
 This was a fun experiment, and despite Swift's quirks, the app works surprisingly well. If I ever decide to get an Apple Developer account, maybe I'll polish it further!
-
