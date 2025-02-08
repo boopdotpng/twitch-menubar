@@ -1,3 +1,4 @@
+// livechannelsview.swift
 import SwiftUI
 import SwiftData
 
@@ -7,6 +8,7 @@ struct LiveChannelsView: View {
     @State private var timer: Timer? = nil
     @FocusState private var isSearchFocused: Bool
     var context: ModelContext
+    var onEnter: (() -> Void)?
 
     var body: some View {
         VStack(spacing: 10) {
@@ -23,6 +25,7 @@ struct LiveChannelsView: View {
                     let sorted = filtered.sorted { $0.liveSince > $1.liveSince }
                     if let topResult = sorted.first, let url = URL(string: topResult.link) {
                         NSWorkspace.shared.open(url)
+                        onEnter?()
                     }
                 }
 
@@ -49,7 +52,7 @@ struct LiveChannelsView: View {
 
             HStack {
                 Button("settings") {
-                    // implement settings action here if needed
+                    // implement settings action if needed
                 }
                 Spacer()
                 Button("quit") {
@@ -68,6 +71,9 @@ struct LiveChannelsView: View {
         }
         .onDisappear {
             timer?.invalidate()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("ClearSearchText"))) { _ in
+            searchText = ""
         }
     }
 
@@ -90,11 +96,10 @@ struct LiveChannelsView: View {
         let hours = (interval % 86400) / 3600
         let minutes = (interval % 3600) / 60
 
-        var components: [String] = []
+        var components: [String] = ["live for"]
         if days > 0 { components.append("\(days)d") }
         if hours > 0 { components.append("\(hours)h") }
-        if minutes > 0 || components.isEmpty { components.append("\(minutes)m") }
-
+        if minutes > 0 || components.count == 1 { components.append("\(minutes)m") }
         return components.joined(separator: " ")
     }
 }
