@@ -20,20 +20,21 @@ struct TwitchMenubarApp: App {
             SettingsView()
         }
         
-        MenuBarExtra("Twitch", systemImage: "play.circle") {
+        MenuBarExtra("twitch", systemImage: "play.circle") {
             ContentView()
             
             Divider()
             
             SettingsLink {
-                Text("Settings")
+                Text("settings")
             }
             .keyboardShortcut(",", modifiers: [.command]);
             
-            Button("Quit") {
+            Button("quit") {
                 NSApplication.shared.terminate(nil)
             }
-            
+            .keyboardShortcut("q", modifiers: [.command])
+
         }
         
     }
