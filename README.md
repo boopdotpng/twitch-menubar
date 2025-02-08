@@ -5,3 +5,6 @@
 - show a neat little window of all the channels that you follow and who's live, so you don't have to open twitch
 - super lightweight - no battery usage and limited background activity
 - cool onboarding process (this might be tough)
+
+## disclaimer 
+I know nothing about macOS application and I don't know much Swift. It's a weird language to be honest. The documentation isn't great. Beyond using LLMs to figure out how to do stuff, there isn't much hope. I don't know how to make pretty UIs in Swift. Probably a skill issue.

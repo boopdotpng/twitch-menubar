@@ -117,6 +117,10 @@ extension TwitchAPI {
 
 extension TwitchAPI {
     func newUserInit(context: ModelContext, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        // reset existing user data.
+        clearStoredUserData(context: context)
+        
         fetchUserProfile { result in
             switch result {
             case .success(let (displayName, profileImageUrl)):
@@ -147,6 +151,29 @@ extension TwitchAPI {
             case .failure(let error):
                 completion(.failure(error))
             }
+        }
+    }
+}
+
+extension TwitchAPI {
+    func clearStoredUserData(context: ModelContext) {
+        do {
+            let fetchDescriptor1 = FetchDescriptor<UserSettings>()
+            let fetchDescriptor2 = FetchDescriptor<FollowedChannel>()
+            
+            let existingUserSettings = try context.fetch(fetchDescriptor1)
+            let existingFollowedChannels = try context.fetch(fetchDescriptor2)
+
+            for user in existingUserSettings {
+                context.delete(user)
+            }
+            for channel in existingFollowedChannels {
+                context.delete(channel)
+            }
+            
+            try context.save()
+        } catch {
+            print("failed to clear stored data:", error)
         }
     }
 }
